@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System Ekspertowy - Motoryzacja</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container mt-5">
+      <h1 class="text-center">System Ekspertowy - Diagnostyka Samochodowa</h1>
+      <form action="/diagnose" method="POST" class="mt-4">
+          <div class="mb-3">
+              <label for="engine_check_light" class="form-label">Czy świeci kontrolka silnika?</label>
+              <select name="engine_check_light" id="engine_check_light" class="form-select">
+                  <option value="yes">Tak</option>
+                  <option value="no">Nie</option>
+              </select>
+          </div>
+
+          <div class="mb-3">
+              <label for="strange_noise" class="form-label">Czy słyszysz dziwne dźwięki?</label>
+              <select name="strange_noise" id="strange_noise" class="form-select">
+                  <option value="yes">Tak</option>
+                  <option value="no">Nie</option>
+              </select>
+          </div>
+
+          <div class="mb-3">
+              <label for="smoke_color" class="form-label">Jaki kolor ma dym z wydechu?</label>
+              <select name="smoke_color" id="smoke_color" class="form-select">
+                  <option value="none">Brak dymu</option>
+                  <option value="black">Czarny</option>
+                  <option value="white">Biały</option>
+              </select>
+          </div>
+
+          <div class="mb-3">
+              <label for="fuel_efficiency" class="form-label">Jak oceniasz zużycie paliwa?</label>
+              <select name="fuel_efficiency" id="fuel_efficiency" class="form-select">
+                  <option value="good">Dobre</option>
+                  <option value="poor">Słabe</option>
+              </select>
+          </div>
+
+          <div class="mb-3">
+              <label for="overheating" class="form-label">Czy silnik się przegrzewa?</label>
+              <select name="overheating" id="overheating" class="form-select">
+                  <option value="yes">Tak</option>
+                  <option value="no">Nie</option>
+              </select>
+          </div>
+
+          <div class="mb-3">
+              <label for="oil_leak" class="form-label">Czy zauważasz wycieki oleju?</label>
+              <select name="oil_leak" id="oil_leak" class="form-select">
+                  <option value="yes">Tak</option>
+                  <option value="no">Nie</option>
+              </select>
+          </div>
+
+          <div class="mb-3">
+              <label for="brake_issue" class="form-label">Czy masz problemy z hamulcami?</label>
+              <select name="brake_issue" id="brake_issue" class="form-select">
+                  <option value="yes">Tak</option>
+                  <option value="no">Nie</option>
+              </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Zdiagnozuj problem</button>
+      </form>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+
+</body>
+</html>
