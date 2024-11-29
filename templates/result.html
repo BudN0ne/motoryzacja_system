@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang=pl'>
+<html lang="pl">
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -10,15 +10,17 @@
 
 <body>
 
-<div class='container mt-5'>
-  <!-- Wynik diagnozy -->
-  <h2>Wynik Diagnozy:</h2> 
-  <!-- Wyświetlenie wyniku -->
-  {{ diagnosis }}
-  
-  <!-- Powrót do formularza -->
-  <a href='/' class='btn btn-secondary mt-4'>Powrót do formularza</a> 
-</div>
+  <div class='container mt-5'>
+    <!-- Wynik diagnozy -->
+    <h2>Wynik Diagnozy:</h2> 
+    <br>
+    <!-- Wyświetlenie wyniku -->
+    {{ diagnosis }}
+    
+    <!-- Powrót do formularza -->
+    <br>
+    <a href='/' class='btn btn-secondary mt-4'>Powrót do formularza</a> 
+  </div>
 
 <!-- Bootstrap JS -->
 <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>

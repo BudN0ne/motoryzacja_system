@@ -1,17 +1,17 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask, render_template, request
-from rules import apply_rules
+from swiplserver import PrologMQI
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
-# Strona główna
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Obsługa formularza i wyświetlenie wyników
 @app.route('/diagnose', methods=['POST'])
 def diagnose():
-    # Pobranie danych od użytkownika
     data = {
         'engine_check_light': request.form.get('engine_check_light'),
         'strange_noise': request.form.get('strange_noise'),
@@ -21,9 +21,19 @@ def diagnose():
         'oil_leak': request.form.get('oil_leak'),
         'brake_issue': request.form.get('brake_issue')
     }
+
+    with PrologMQI() as mqi:
+        with mqi.create_thread() as prolog_thread:
+            prolog_thread.query("consult('knowledge_base.pl')")
+            for fact, value in data.items():
+                if value == 'yes' or value in ['black', 'white', 'poor']:
+                    prolog_thread.query(f"assertz(fact({fact}, {value}))")
+            result = prolog_thread.query("diagnosis(Diagnosis)")
+            for fact in data.keys():
+                prolog_thread.query(f"retractall(fact({fact}, _))")
     
-    # Zastosowanie reguł wnioskowania
-    diagnosis = apply_rules(data)
+    # Dekodowanie wyniku jako UTF-8
+    diagnosis = result[0]['Diagnosis'] if result else "Brak jednoznacznej diagnozy. Skontaktuj się z mechanikiem."
     
     return render_template('result.html', diagnosis=diagnosis)
 
