@@ -24,6 +24,7 @@ def diagnose():
 
     with PrologMQI() as mqi:
         with mqi.create_thread() as prolog_thread:
+            prolog_thread.query("set_prolog_flag(encoding, utf8)")
             prolog_thread.query("consult('knowledge_base.pl')")
             for fact, value in data.items():
                 if value == 'yes' or value in ['black', 'white', 'poor']:

@@ -15,29 +15,29 @@ fact(oil_leak, yes).
 fact(brake_issue, yes).
 
 % Reguły wnioskowania
-diagnosis('Problem z ukladem paliwowym lub turbosprezarka') :-
+diagnosis('Problem z układem paliwowym lub turbosprężarką') :-
     fact(engine_check_light_on, yes),
     fact(smoke_color, black).
 
-diagnosis('Mozliwe uszkodzenie uszczelki pod głowica') :-
+diagnosis('Możliwe uszkodzenie uszczelki pod głowicą') :-
     fact(engine_check_light_on, yes),
     fact(smoke_color, white).
 
-diagnosis('Sprawdz uklad wydechowy lub zawieszenie') :-
+diagnosis('Sprawdź układ wydechowy lub zawieszenie') :-
     fact(strange_noise, yes).
 
-diagnosis('Zalecana diagnostyka ukladu paliwowego') :-
+diagnosis('Zalecana diagnostyka układu paliwowego') :-
     fact(fuel_efficiency, poor).
 
-diagnosis('Wycieki oleju moga powodowac przegrzewanie się silnika. Sprawdz uszczelki') :-
+diagnosis('Wycieki oleju mogą powodować przegrzewanie się silnika. Sprawdź uszczelki') :-
     fact(overheating, yes),
     fact(oil_leak, yes).
 
-diagnosis('Przegrzewanie silnika. Sprawdz uklad chlodzenia') :-
+diagnosis('Przegrzewanie silnika. Sprawdź układ chłodzenia') :-
     fact(overheating, yes),
     \+ fact(oil_leak, yes).
 
-diagnosis('Problem z ukladem hamulcowym. Sprawdz klocki hamulcowe lub plyn hamulcowy') :-
+diagnosis('Problem z układem hamulcowym. Sprawdź klocki hamulcowe lub płyn hamulcowy') :-
     fact(brake_issue, yes).
 
 diagnosis('Brak jednoznacznej diagnozy. Skontaktuj się z mechanikiem') :-
