@@ -8,69 +8,107 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container mt-5">
-      <h1 class="text-center">System Ekspertowy - Diagnostyka Samochodowa</h1>
-      <form action="/diagnose" method="POST" class="mt-4">
-          <div class="mb-3">
-              <label for="engine_check_light" class="form-label">Czy świeci kontrolka silnika?</label>
-              <select name="engine_check_light" id="engine_check_light" class="form-select">
-                  <option value="yes">Tak</option>
-                  <option value="no">Nie</option>
-              </select>
-          </div>
+    <div class="container">
+        <h1>System Ekspertowy - Diagnostyka Samochodowa</h1>
+        <form action="/diagnose" method="POST">
+            <label>Czy świeci kontrolka silnika?</label><br>
+            <select name="engine_check_light">
+                <option value="yes">Tak</option>
+                <option value="no">Nie</option>
+            </select><br><br>
 
-          <div class="mb-3">
-              <label for="strange_noise" class="form-label">Czy słyszysz dziwne dźwięki?</label>
-              <select name="strange_noise" id="strange_noise" class="form-select">
-                  <option value="yes">Tak</option>
-                  <option value="no">Nie</option>
-              </select>
-          </div>
+            <label>Czy słyszysz dziwne dźwięki?</label><br>
+            <select name="strange_noise">
+                <option value="yes">Tak</option>
+                <option value="no">Nie</option>
+            </select><br><br>
 
-          <div class="mb-3">
-              <label for="smoke_color" class="form-label">Jaki kolor ma dym z wydechu?</label>
-              <select name="smoke_color" id="smoke_color" class="form-select">
-                  <option value="none">Brak dymu</option>
-                  <option value="black">Czarny</option>
-                  <option value="white">Biały</option>
-              </select>
-          </div>
+            <label>Jaki kolor ma dym z wydechu?</label><br>
+            <select name="smoke_color">
+                <option value="none">Brak dymu</option>
+                <option value="black">Czarny</option>
+                <option value="white">Biały</option>
+            </select><br><br>
 
-          <div class="mb-3">
-              <label for="fuel_efficiency" class="form-label">Jak oceniasz zużycie paliwa?</label>
-              <select name="fuel_efficiency" id="fuel_efficiency" class="form-select">
-                  <option value="good">Dobre</option>
-                  <option value="poor">Słabe</option>
-              </select>
-          </div>
+            <label>Jak oceniasz zużycie paliwa?</label><br>
+            <select name="fuel_efficiency">
+                <option value="good">Dobre</option>
+                <option value="poor">Słabe</option>
+            </select><br><br>
 
-          <div class="mb-3">
-              <label for="overheating" class="form-label">Czy silnik się przegrzewa?</label>
-              <select name="overheating" id="overheating" class="form-select">
-                  <option value="yes">Tak</option>
-                  <option value="no">Nie</option>
-              </select>
-          </div>
+            <label>Czy silnik się przegrzewa?</label><br>
+            <select name="overheating">
+                <option value="yes">Tak</option>
+                <option value="no">Nie</option>
+            </select><br><br>
 
-          <div class="mb-3">
-              <label for="oil_leak" class="form-label">Czy zauważasz wycieki oleju?</label>
-              <select name="oil_leak" id="oil_leak" class="form-select">
-                  <option value="yes">Tak</option>
-                  <option value="no">Nie</option>
-              </select>
-          </div>
+            <label>Czy zauważasz wycieki oleju?</label><br>
+            <select name="oil_leak">
+                <option value="yes">Tak</option>
+                <option value="no">Nie</option>
+            </select><br><br>
 
-          <div class="mb-3">
-              <label for="brake_issue" class="form-label">Czy masz problemy z hamulcami?</label>
-              <select name="brake_issue" id="brake_issue" class="form-select">
-                  <option value="yes">Tak</option>
-                  <option value="no">Nie</option>
-              </select>
-          </div>
+            <label>Czy masz problemy z hamulcami?</label><br>
+            <select name="brake_issue">
+                <option value="yes">Tak</option>
+                <option value="no">Nie</option>
+            </select><br><br>
 
-          <button type="submit" class="btn btn-primary w-100">Zdiagnozuj problem</button>
-      </form>
-  </div>
+            <label>Jakie jest ciśnienie w oponach (w psi)?</label><br>
+            <select name="tire_pressure">
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="28">28</option>
+                <option value="30">30</option>
+                <option value="32">32</option>
+                <option value="35">35</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+            </select><br><br>
+            
+            <label>Jaki jest poziom oleju (w skali 0-100)?</label><br>
+            <select name="oil_level">
+                <option value="0">0</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+                <option value="80">80</option>
+                <option value="90">90</option>
+                <option value="100">100</option>
+            </select><br><br>
+            
+            <label>Jaki jest aktualny poziom napięcia akumulatora (w V)?</label><br>
+            <select name="battery_voltage">
+                <option value="10.0">10.0 V</option>
+                <option value="11.0">11.0 V</option>
+                <option value="11.5">11.5 V</option>
+                <option value="12.0">12.0 V</option>
+                <option value="12.5">12.5 V</option>
+                <option value="13.0">13.0 V</option>
+                <option value="13.5">13.5 V</option>
+                <option value="14.0">14.0 V</option>
+                <option value="14.5">14.5 V</option>
+            </select><br><br>
+            
+            <label>Jakie jest zużycie paliwa (w L/100km)?</label><br>
+            <select name="fuel_consumption">
+                <option value="0">0 L/100km</option>
+                <option value="5">5 L/100km</option>
+                <option value="8">8 L/100km</option>
+                <option value="10">10 L/100km</option>
+                <option value="12">12 L/100km</option>
+                <option value="15">15 L/100km</option>
+                <option value="20">20 L/100km</option>
+            </select><br><br>
+            
+
+            <button type="submit">Zdiagnozuj problem</button>
+        </form>
+    </div>
 
   <!-- Bootstrap JS -->
   <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
