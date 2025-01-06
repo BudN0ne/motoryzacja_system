@@ -15,7 +15,12 @@
     <h2>Wynik Diagnozy:</h2> 
     <br>
     <!-- Wyświetlenie wyniku -->
-    {{ diagnosis }}
+    <ul>
+      {% for diag in diagnosis %}
+          <li>{{ diag|safe }}</li>
+          <br>
+      {% endfor %}
+    </ul>
     
     <!-- Powrót do formularza -->
     <br>

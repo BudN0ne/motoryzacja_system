@@ -38,16 +38,19 @@ def diagnose():
                     prolog_thread.query(f"assertz(fact({fact}, {value}))")
 
             # Zapytanie o diagnozę
-            result = prolog_thread.query("diagnosis_all(Diagnoses)")
+            result = prolog_thread.query("diagnosis(Diagnosis)")
 
             # Czyszczenie faktów po diagnozie
             for fact in data.keys():
                 prolog_thread.query(f"retractall(fact({fact}, _))")
 
             # Przetwarzanie wyniku diagnozy
-            diagnoses = result[0]['Diagnoses'] if result else ["Brak jednoznacznej diagnozy. Skontaktuj się z mechanikiem."]
+            if result:
+                diagnosis = [res['Diagnosis'] for res in result]
+            else:
+                diagnosis = ["Brak jednoznacznej diagnozy. Skontaktuj się z mechanikiem."]
 
-    return render_template('result.html', diagnosis=", ".join(diagnoses))
+    return render_template('result.html', diagnosis=diagnosis)
 
 if __name__ == '__main__':
     app.run(debug=True)
