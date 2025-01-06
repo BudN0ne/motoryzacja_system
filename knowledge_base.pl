@@ -24,6 +24,8 @@ fact(tire_pressure, 32). % Ciśnienie w oponach (psi)
 fact(oil_level, 50). % Poziom oleju (skala 0-100)
 fact(battery_voltage, 12.5). % Napięcie akumulatora (V)
 fact(fuel_consumption, 8). % Zużycie paliwa (L/100km)
+fact(coolant_level, normal). % Poziom płynu chłodniczego
+fact(turbocharger_issue, no). % Problemy z turbosprężarką
 
 % === Progi (stałe) ===
 threshold(engine_temperature_high, 100). % Maksymalna bezpieczna temperatura silnika (Celsius)
@@ -100,6 +102,16 @@ diagnosis('Przegrzewanie silnika. Sprawdź termostat lub układ chłodzenia') :-
     valid_engine_temperature(Temp),
     Temp > Limit.
 
+diagnosis('Niski poziom płynu chłodniczego. Sprawdź układ chłodzenia') :-
+    fact(coolant_level, low).
+
+diagnosis('Problem z turbosprężarką. Sprawdź ciśnienie doładowania') :-
+    fact(turbocharger_issue, yes).
+
 % Jeśli żadna z reguł nie pasuje
 diagnosis('Brak jednoznacznej diagnozy. Skontaktuj się z mechanikiem.') :-
     \+ diagnosis(_).
+
+% Zwracanie wszystkich diagnoz
+diagnosis_all(Diagnoses) :-
+    findall(Diagnosis, diagnosis(Diagnosis), Diagnoses).

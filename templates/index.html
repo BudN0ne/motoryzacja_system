@@ -104,7 +104,14 @@
                 <option value="15">15 L/100km</option>
                 <option value="20">20 L/100km</option>
             </select><br><br>
-            
+
+            <label>Czy poziom płynu chłodniczego jest niski?</label>
+            <input type="radio" name="coolant_level" value="low"> Tak
+            <input type="radio" name="coolant_level" value="normal"> Nie
+
+            <label>Czy występują problemy z turbosprężarką?</label>
+            <input type="radio" name="turbocharger_issue" value="yes"> Tak
+            <input type="radio" name="turbocharger_issue" value="no"> Nie
 
             <button type="submit">Zdiagnozuj problem</button>
         </form>
